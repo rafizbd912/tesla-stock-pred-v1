@@ -55,7 +55,6 @@ train_encodings = tokenizer(list_of_sentences, truncation=True, padding=True, ma
 
 ## How to Clone
 
-1. Clone the repository:
 ```bash
 git clone https://github.com/your-username/your-repo-name.git
 ```

@@ -18,3 +18,48 @@ You can install these dependencies via pip:
 ```bash
 pip install numpy pandas tensorflow scikit-learn transformers
 ```
+
+## Models Used
+
+### LSTM Model
+**Description:** LSTM networks were used to process sequences of embedded tweets, with dropout layers to mitigate overfitting.
+
+**Code Snippet:**
+```python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout, Embedding
+
+model = Sequential()
+model.add(Embedding(input_dim=1000, output_dim=64))
+model.add(LSTM(64, return_sequences=True))
+model.add(Dropout(0.5))
+model.add(LSTM(32))
+model.add(Dense(1, activation='sigmoid'))
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+```
+
+### DistilBERT Model
+**Description:** Utilized the DistilBERT transformer model pre-trained on Twitter data for sentiment analysis before classifying stock movements.
+
+**Code Snippet:**
+```python
+from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
+from transformers import InputExample, InputFeatures
+
+tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+model = TFDistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased')
+
+# Tokenize and encode sentences in the dataset
+train_encodings = tokenizer(list_of_sentences, truncation=True, padding=True, max_length=128)
+```
+
+## How to Clone
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+```
+
+
+
+
